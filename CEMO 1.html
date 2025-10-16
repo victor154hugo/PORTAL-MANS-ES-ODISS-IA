@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CEMO – Portal</title>
+<meta name="description" content="Portal do Colégio Estadual Mansões Odisséia (CEMO) — notícias, projetos, eventos e inscrições" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#ffffff;
+    --muted:#f5f6f7;
+    --text:#0f1724;
+    --primary:#2e9f41; /* padrão - alteração via ADM */
+    --accent:#f3c34b;
+    --card-shadow:0 8px 30px rgba(15,23,42,0.06);
+    --max-width:1180px;
+    --radius:10px;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Helvetica Neue";
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#fff 0%,#fbfcfd 100%);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max-width);margin:0 auto;padding:18px}
+
+  /* Header */
+  header.site-header{position:sticky;top:0;z-index:90;backdrop-filter:blur(6px);background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.86));border-bottom:1px solid rgba(15,23,42,0.04)}
+  .header-inner{display:flex;align-items:center;gap:16px;max-width:var(--max-width);margin:0 auto;padding:12px 18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  #siteLogo{width:72px;height:72px;border-radius:12px;object-fit:contain;box-shadow:var(--card-shadow);background:transparent}
+  .brand-text{display:flex;flex-direction:column;line-height:1}
+  .brand-text .title{font-weight:800;font-size:18px}
+  .brand-text .subtitle{font-size:12px;color:rgba(15,23,42,0.6);font-weight:700}
+
+  nav.top-nav{margin-left:18px;display:flex;gap:8px;align-items:center}
+  nav.top-nav a{display:inline-block;padding:10px 12px;border-radius:8px;font-weight:700;color:rgba(15,23,42,0.85)}
+  nav.top-nav a.active{background:var(--primary);color:white;box-shadow:0 6px 18px rgba(46,159,65,0.12)}
+
+  .header-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .search-input{display:flex;align-items:center;background:var(--muted);padding:8px;border-radius:999px;gap:8px;width:320px;max-width:40vw}
+  .search-input input{border:0;background:transparent;outline:none;padding:6px;font-weight:600}
+
+  .btn{background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(46,159,65,0.12)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,42,0.06);box-shadow:none}
+
+  /* Hero */
+  .hero{margin-top:18px;padding:0 18px}
+  .hero-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;max-width:var(--max-width);margin:0 auto}
+  .featured{background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);display:flex;flex-direction:column}
+  .featured .img-wrap{width:100%;height:420px;overflow:hidden}
+  .featured img{width:100%;height:100%;object-fit:cover;display:block}
+  .featured .info{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+  .featured .kicker{font-weight:800;color:var(--primary);font-size:13px}
+  .featured h1{margin:0;font-size:30px;line-height:1.02}
+  .featured p.lead{margin:0;color:rgba(15,23,42,0.75);font-size:15px}
+
+  .side-list{display:flex;flex-direction:column;gap:12px}
+  .side-card{display:flex;gap:12px;align-items:center;background:var(--surface);padding:12px;border-radius:10px;box-shadow:var(--card-shadow)}
+  .side-card img{width:132px;height:84px;object-fit:cover;border-radius:8px}
+  .side-card .meta{font-size:12px;color:rgba(15,23,42,0.6);font-weight:800}
+  .side-card h3{margin:0;font-size:16px}
+
+  /* Main */
+  main.site-main{max-width:var(--max-width);margin:20px auto;padding:0 18px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
+  .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow);display:flex;flex-direction:column}
+  .card img{width:100%;height:180px;object-fit:cover}
+  .card .content{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+  .card .meta{font-size:12px;color:rgba(15,23,42,0.6);font-weight:800}
+  .card h3{margin:0;font-size:16px}
+  .card .excerpt{color:rgba(15,23,42,0.75);font-size:14px}
+
+  aside.sidebar{display:flex;flex-direction:column;gap:12px}
+  .widget{background:var(--surface);padding:12px;border-radius:12px;box-shadow:var(--card-shadow)}
+  .widget h4{margin:0 0 8px 0;font-size:14px}
+
+  footer.site-footer{margin-top:34px;padding:28px 18px;background:linear-gradient(180deg, rgba(46,159,65,0.03), transparent)}
+  .footer-inner{max-width:var(--max-width);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 18px}
+
+  /* Admin modal full-screen (simula nova página) */
+  .admin{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:120}
+  .admin.open{display:flex}
+  .panel{width:100%;height:100%;max-width:1200px;background:white;border-radius:12px;overflow:auto;box-shadow:0 20px 60px rgba(2,6,23,0.35)}
+  .panel .head{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(16,24,40,0.04)}
+  .panel .body{padding:18px}
+  .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
+  .list{background:var(--muted);padding:12px;border-radius:8px;max-height:56vh;overflow:auto}
+  .item{background:white;padding:10px;border-radius:8px;margin-bottom:8px;display:flex;gap:10px;align-items:center}
+  .item img{width:64px;height:48px;object-fit:cover;border-radius:6px}
+  .form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+  label{font-weight:700;font-size:13px;color:#334155}
+  input[type=text], textarea, select, input[type=date], input[type=color]{
+    padding:10px;border-radius:8px;border:1px solid rgba(16,24,40,0.06);font-size:14px;width:100%;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .row{display:flex;gap:8px}
+  .muted{color:#64748b;font-size:13px}
+  .btn-danger{background:#ef4444;color:white;border:none;padding:8px 10px;border-radius:8px}
+  .btn-outline{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 10px;border-radius:8px}
+  .hidden{display:none}
+  .small{font-size:13px}
+  .kicker-pill{background:var(--accent);padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;color:#4a2a00;width:max-content}
+
+  /* responsive */
+  @media (max-width:1100px){
+    .hero-grid{grid-template-columns:1fr}
+    main.site-main{grid-template-columns:1fr}
+    .news-grid{grid-template-columns:1fr}
+    .featured .img-wrap{height:320px}
+  }
+  @media (max-width:640px){
+    #siteLogo{width:56px;height:56px}
+    .search-input{display:none}
+    nav.top-nav{display:none}
+    .featured .img-wrap{height:200px}
+    .featured h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <div class="brand">
+      <!-- Se quiser, substitua ./logo-cemo.jpg pelo nome do arquivo da sua imagem -->
+      <img id="siteLogo" src="./logo-cemo.jpg" alt="CEMO Logo">
+      <div class="brand-text">
+        <div class="title" id="siteTitle">CEMO – Colégio Estadual Mansões Odisséia</div>
+        <div class="subtitle" id="siteSubtitle">Portal de notícias e comunicados</div>
+      </div>
+    </div>
+
+    <nav class="top-nav" aria-label="Main menu" id="topNav">
+      <!-- links injetados pelo JS: Início / Notícias / Projetos / Eventos / Sobre -->
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-input" title="Pesquisar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.6"><path d="M21 21l-4.35-4.35" stroke="#111827" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#111827" stroke-width="1.6"/></svg>
+        <input id="searchInput" placeholder="Pesquisar notícias..." />
+      </div>
+      <!-- Somente este botão controla o ADM -->
+      <button class="btn ghost" id="btnAdminQuick">Painel ADM</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-label="Destaque principal">
+  <div class="wrap hero-grid">
+    <div class="featured" id="featuredCard">
+      <div class="img-wrap" id="featuredImgWrap"></div>
+      <div class="info">
+        <div class="kicker" id="featuredCategory">Geral</div>
+        <h1 id="featuredTitle">Boas-vindas ao ano letivo 2025</h1>
+        <p class="lead" id="featuredLead">Seja bem-vindo ao portal do CEMO — principais notícias e comunicados da escola.</p>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:6px">
+          <a id="featuredRead" class="btn" href="#">Ler notícia</a>
+          <div class="small muted" id="featuredDate">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-list" id="sideList"></div>
+  </div>
+</section>
+
+<main class="site-main" role="main">
+  <section id="contentArea">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <h2 style="margin:0" id="sectionTitle">Últimas</h2>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select id="sortSelect" title="Ordenar" style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);font-weight:700">
+          <option value="new">Mais recentes</option>
+          <option value="old">Mais antigas</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="news-grid" id="newsGrid"></div>
+
+    <div id="moreSection" style="margin-top:18px"></div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <h4>Área Administrativa</h4>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="btnAdminOpen">Abrir ADM</button>
+      </div>
+      <small class="muted" style="display:block;margin-top:8px">Gerencie notícias, projetos, eventos e inscrições.</small>
+    </div>
+
+    <div class="widget">
+      <h4>Mais Lidas</h4>
+      <div id="mostRead" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <strong id="footerTitle">CEMO – Colégio Estadual Mansões Odisséia</strong>
+      <div class="muted small">Educar para transformar. &copy; <span id="yearCopy"></span></div>
+    </div>
+    <div class="center muted small">Portal escolar — notícias, projetos e eventos</div>
+  </div>
+</footer>
+
+<!-- Admin modal (full-screen) -->
+<div class="admin" id="adminModal" role="dialog" aria-modal="true">
+  <div class="panel" id="adminPanel">
+    <div class="head">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div style="font-weight:800;color:var(--primary)"><svg height="24" viewBox="0 0 24 24" width="24" fill="none"><path d="M12 2l3 6 6 .5-4.5 3 1.5 6L12 16l-6 2 1.5-6L3 8.5 9 8 12 2z" fill="currentColor"/></svg></div>
+        <div>
+          <div style="font-weight:800">Painel Administrativo</div>
+          <div class="tiny muted">Edite tudo do portal</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div id="adminUserLabel" class="muted tiny"></div>
+        <button class="btn-outline" id="btnCloseAdmin">Fechar</button>
+      </div>
+    </div>
+
+    <div class="body">
+      <!-- login -->
+      <div id="loginArea">
+        <h3>Entrar no Painel</h3>
+        <div style="max-width:480px">
+          <div class="form-row"><label>Usuário</label><input type="text" id="loginUser" value="admin" /></div>
+          <div class="form-row"><label>Senha</label><input type="password" id="loginPass" value="" /></div>
+          <div class="row">
+            <button class="btn" id="btnLogin">Entrar</button>
+            <button class="btn-outline" id="btnCloseLogin">Cancelar</button>
+          </div>
+          <p class="muted" style="margin-top:10px">Senha padrão: <strong>123admin</strong></p>
+        </div>
+      </div>
+
+      <!-- admin content -->
+      <div id="adminContent" class="hidden">
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" id="btnNew">+ Nova notícia</button>
+            <button class="btn" id="btnNewProject">+ Novo projeto</button>
+            <button class="btn" id="btnNewEvent">+ Novo evento</button>
+            <button class="btn-outline" id="btnExport">Exportar JSON</button>
+            <label class="btn-outline" style="cursor:pointer;padding:8px;border-radius:8px">Importar <input id="importFile" type="file" accept="application/json" style="display:none"/></label>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn-outline" id="btnLogout">Sair</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Left: lists -->
+          <div>
+            <div style="display:flex;gap:8px;margin-bottom:10px">
+              <button class="btn-outline" id="tabNews">Notícias</button>
+              <button class="btn-outline" id="tabProjects">Projetos</button>
+              <button class="btn-outline" id="tabEvents">Eventos</button>
+              <button class="btn-outline" id="tabAbout">Sobre</button>
+              <button class="btn-outline" id="tabSubs">Inscrições</button>
+            </div>
+
+            <div class="list" id="entityList">
+              <!-- populated dinamically -->
+            </div>
+          </div>
+
+          <!-- Right: editor & settings -->
+          <aside>
+            <div style="background:var(--muted);padding:12px;border-radius:8px;margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong id="editorTitle">Editor</strong>
+                <small id="editorMode" class="muted">-</small>
+              </div>
+
+              <!-- Editor form (reutilizável) -->
+              <div style="margin-top:8px" id="editorFormWrap">
+                <!-- will be injected with JS according to selected tab -->
+              </div>
+            </div>
+
+            <div style="background:var(--muted);padding:12px;border-radius:8px">
+              <strong>Configurações Gerais</strong>
+              <div style="margin-top:8px">
+                <div class="form-row"><label>Usuário</label><input type="text" id="cfg_user" value="admin" disabled/></div>
+                <div class="form-row"><label>Trocar senha</label><input type="password" id="cfg_newpass" placeholder="Nova senha"/></div>
+                <div class="row" style="margin-top:8px"><button class="btn" id="btnChangePass">Salvar senha</button></div>
+
+                <hr style="margin:12px 0;border:none;border-top:1px solid rgba(15,23,42,0.04)">
+
+                <strong>Personalizar cabeçalho</strong>
+                <div style="margin-top:8px">
+                  <div class="form-row"><label>Logo (trocar)</label>
+                    <input type="file" id="cfg_logo" accept="image/*"/>
+                    <div id="cfg_logo_preview" style="margin-top:8px"></div>
+                  </div>
+                  <div class="form-row"><label>Título do site</label><input type="text" id="cfg_title" /></div>
+                  <div class="form-row"><label>Subtítulo</label><input type="text" id="cfg_subtitle" /></div>
+                  <div class="form-row"><label>Menu (separados por | )</label><input type="text" id="cfg_menu_items" placeholder="Início | Notícias | Projetos | Eventos | Sobre" /></div>
+                  <div class="form-row"><label>Cor primária</label><input type="color" id="cfg_primary" value="#2e9f41" /></div>
+                  <div class="form-row"><label>Cor de acento</label><input type="color" id="cfg_accent" value="#f3c34b" /></div>
+
+                  <div class="row" style="margin-top:8px">
+                    <button class="btn" id="btnSaveHeader">Salvar cabeçalho</button>
+                    <button class="btn-outline" id="btnResetHeader">Resetar cores</button>
+                  </div>
+                </div>
+
+                <div style="margin-top:12px">
+                  <small class="muted">Backup manual: exporte os dados e salve em local seguro.</small>
+                </div>
+                <div style="margin-top:12px">
+                  <button class="btn-outline" id="btnResetAll">Resetar tudo (apagar)</button>
+                </div>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Article view (inline) -->
+<section id="articleSection" class="hidden" style="max-width:900px;margin:20px auto;background:var(--surface);padding:18px;border-radius:12px;box-shadow:var(--card-shadow)"></section>
+
+<!-- Project Signup modal -->
+<div id="signupModal" class="admin" style="background:rgba(2,6,23,0.5);display:none;align-items:center;justify-content:center;z-index:130">
+  <div style="width:100%;max-width:600px;background:white;padding:18px;border-radius:10px">
+    <h3 id="signupProjectTitle">Inscrição</h3>
+    <div id="signupFormWrap"></div>
+    <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+      <button class="btn" id="submitSignup">Enviar inscrição</button>
+      <button class="btn-outline" id="cancelSignup">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  CEMO - single-file portal + admin
+  - Sem categorias
+  - Admin abre como "página" (modal full-screen)
+  - Projetos com inscrição; inscrições visíveis no ADM
+  - Tudo salvo em localStorage (STORAGE_KEY)
+  - Admin password default 123admin (hash armazenado)
+*/
+
+const STORAGE_KEY = 'cemo_site_v1';
+const ADMIN_KEY = 'cemo_admin_v1';
+const DEFAULT_USER = 'admin';
+const DEFAULT_PASS = '123admin';
+const DEFAULT_MENU = ['Início','Notícias','Projetos','Eventos','Sobre'];
+
+const qs = (s, root=document) => root.querySelector(s);
+const qsa = (s, root=document) => Array.from((root||document).querySelectorAll(s));
+
+async function hashString(str){
+  if(!window.crypto || !crypto.subtle) return str;
+  const enc = new TextEncoder().encode(str);
+  const digest = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function uid(len=10){
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let o=''; for(let i=0;i<len;i++) o += chars[Math.floor(Math.random()*chars.length)];
+  return o;
+}
+
+function todayISO(){ return (new Date()).toISOString().slice(0,10) }
+
+function loadData(){ try{ const r = localStorage.getItem(STORAGE_KEY); return r? JSON.parse(r): {articles:[],projects:[],events:[],inscriptions:[],cfg:{}} }catch(e){ return {articles:[],projects:[],events:[],inscriptions:[],cfg:{}} } }
+function saveData(data){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+async function ensureAdmin(){
+  if(!localStorage.getItem(ADMIN_KEY)){
+    const passHash = await hashString(DEFAULT_PASS);
+    localStorage.setItem(ADMIN_KEY, JSON.stringify({user:DEFAULT_USER, pass:passHash}));
+  }
+}
+
+/* App state */
+let store = loadData();
+if(!store.cfg || !store.cfg.menu) store.cfg = {
+  title: 'CEMO – Colégio Estadual Mansões Odisséia',
+  subtitle: 'Portal de notícias e comunicados',
+  logo: './logo-cemo.jpg',
+  menu: DEFAULT_MENU,
+  primary: '#2e9f41',
+  accent: '#f3c34b'
+};
+let state = {
+  q:'',
+  sort:'new',
+  isAdmin:false,
+  activeTab:'news', // in admin: news/projects/events/about/subs
+  editing:null // current editing entity
+};
+
+/* seed sample if empty */
+function seedIfEmpty(){
+  if((store.articles||[]).length===0 && (store.projects||[]).length===0){
+    store.articles = [
+      {id:uid(8),title:'Boas-vindas ao ano letivo 2025',date:todayISO(),published:true,image:null,text:'Sejam bem-vindos ao CEMO. Acompanhe as novidades.'},
+      {id:uid(8),title:'Feira de Ciências: trabalhos dos alunos',date:todayISO(),published:true,image:null,text:'A feira acontecerá na quadra poliesportiva.'}
+    ];
+    store.projects = [
+      {id:uid(8),title:'Projeto Robótica 2025',date:todayISO(),published:true,image:null,description:'Aprendizado de robótica com competição local.'}
+    ];
+    saveData(store);
+  }
+}
+
+/* Apply config (visuals) */
+function applyCfg(){
+  const cfg = store.cfg || {};
+  document.documentElement.style.setProperty('--primary', cfg.primary || '#2e9f41');
+  document.documentElement.style.setProperty('--accent', cfg.accent || '#f3c34b');
+  qs('#siteTitle').textContent = cfg.title || '';
+  qs('#siteSubtitle').textContent = cfg.subtitle || '';
+  qs('#footerTitle').textContent = cfg.title || 'CEMO – Colégio Estadual Mansões Odisséia';
+  if(cfg.logo) qs('#siteLogo').src = cfg.logo;
+  renderTopMenu(cfg.menu || DEFAULT_MENU);
+}
+
+/* Render header menu */
+function renderTopMenu(menu){
+  const nav = qs('#topNav'); nav.innerHTML = '';
+  (menu || DEFAULT_MENU).forEach(label=>{
+    const a = document.createElement('a');
+    a.href = '#'; a.textContent = label;
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const name = label.toLowerCase();
+      if(name.includes('início')) { location.hash=''; showSection('home'); }
+      else if(name.includes('not')) { location.hash = '#noticias'; showSection('news'); }
+      else if(name.includes('projet')) { location.hash = '#projetos'; showSection('projects'); }
+      else if(name.includes('event')) { location.hash = '#eventos'; showSection('events'); }
+      else if(name.includes('sobre')) { location.hash = '#sobre'; showSection('about'); }
+      setActiveNavByText(label);
+    });
+    nav.appendChild(a);
+  });
+}
+
+/* UI render: hero, side, news, projects, events */
+function renderHeroAndSide(){
+  const articles = (store.articles||[]).filter(a=>a.published).slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+  const featured = articles[0] || null;
+  if(featured){
+    qs('#featuredImgWrap').innerHTML = featured.image? `<img src="${featured.image}" alt="">` : `<div style="height:100%;display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">${'Destaque'}</div>`;
+    qs('#featuredCategory').textContent = '';
+    qs('#featuredTitle').textContent = featured.title;
+    qs('#featuredLead').textContent = featured.text? featured.text.slice(0,220) : '';
+    qs('#featuredDate').textContent = formatDate(featured.date);
+    qs('#featuredRead').href = '#news-'+featured.id;
+  } else {
+    qs('#featuredImgWrap').innerHTML = `<div style="height:100%;display:flex;align-items:center;justify-content:center;color:rgba(15,23,42,0.6)">Sem destaques</div>`;
+    qs('#featuredTitle').textContent = 'Sem destaques';
+    qs('#featuredLead').textContent = '';
+    qs('#featuredDate').textContent = '';
+    qs('#featuredRead').href = '#';
+  }
+
+  const side = qs('#sideList'); side.innerHTML = '';
+  articles.slice(1,6).forEach(it=>{
+    const div = document.createElement('div'); div.className='side-card';
+    div.innerHTML = `
+      ${it.image? `<img src="${it.image}" alt="">` : `<div style="width:132px;height:84px;border-radius:8px;background:linear-gradient(90deg, rgba(46,159,65,0.04), rgba(78,160,255,0.02));display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">Notícia</div>`}
+      <div style="flex:1">
+        <div class="meta">${formatDate(it.date)}</div>
+        <h3>${it.title}</h3>
+        <a href="#news-${it.id}" style="font-weight:800;color:var(--primary)">Ler →</a>
+      </div>
+    `;
+    side.appendChild(div);
+  });
+}
+
+function renderNewsGrid(){
+  const grid = qs('#newsGrid'); grid.innerHTML='';
+  const articles = (store.articles||[]).filter(a=>a.published).slice();
+  // search filter
+  const q = state.q && state.q.trim().toLowerCase();
+  let items = articles.filter(it => {
+    if(!q) return true;
+    return (it.title + ' ' + (it.text||'')).toLowerCase().includes(q);
+  });
+  items.sort((a,b)=> state.sort==='new' ? new Date(b.date)-new Date(a.date) : new Date(a.date)-new Date(b.date));
+  if(items.length===0){
+    grid.innerHTML = `<div style="grid-column:1/-1;padding:30px;background:linear-gradient(90deg, rgba(46,159,65,0.03), rgba(78,160,255,0.02));border-radius:12px;text-align:center">Nenhuma notícia encontrada.</div>`;
+    return;
+  }
+  items.forEach(it=>{
+    const card = document.createElement('article'); card.className='card';
+    card.innerHTML = `
+      ${it.image? `<img src="${it.image}" alt="capa">` : `<div style="height:180px;background:linear-gradient(90deg, rgba(46,159,65,0.04), rgba(78,160,255,0.02));display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">Notícia</div>`}
+      <div class="content">
+        <div class="meta">${formatDate(it.date)}</div>
+        <h3>${it.title}</h3>
+        <div class="excerpt">${(it.text||'').slice(0,140)}${(it.text||'').length>140? '…':''}</div>
+        <a class="small" href="#news-${it.id}" style="font-weight:800;color:var(--primary)">Ler notícia →</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderMostRead(){
+  const wrap = qs('#mostRead'); wrap.innerHTML='';
+  const items = (store.articles||[]).filter(a=>a.published).slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+  items.slice(0,5).forEach(it=>{
+    const div = document.createElement('div'); div.style.display='flex'; div.style.justifyContent='space-between'; div.style.gap='8px';
+    div.innerHTML = `<div style="flex:1;font-weight:800">${it.title}</div><div class="muted" style="white-space:nowrap">${formatDate(it.date)}</div>`;
+    wrap.appendChild(div);
+  });
+}
+
+/* Format date */
+function formatDate(d){
+  if(!d) return '';
+  try{ const dt = new Date(d); return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return d; }
+}
+
+/* Article render */
+function renderArticleById(id){
+  const art = (store.articles||[]).find(a=>a.id===id);
+  const sec = qs('#articleSection');
+  if(!art){ sec.innerHTML = '<p>Notícia não encontrada.</p>'; sec.classList.remove('hidden'); return; }
+  sec.innerHTML = `${art.image? `<img src="${art.image}" alt="capa" style="width:100%;height:420px;object-fit:cover;border-radius:8px">` : '' }
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+      <div>
+        <div class="meta">${formatDate(art.date)}</div>
+        <h2 style="margin:6px 0 0 0">${art.title}</h2>
+      </div>
+      <div style="min-width:120px;text-align:right">
+        <a href="#" id="backHome" style="font-weight:800;color:var(--primary)">← Voltar</a>
+      </div>
+    </div>
+    <div style="margin-top:18px;white-space:pre-line">${art.text || ''}</div>`;
+  sec.classList.remove('hidden');
+  document.querySelector('main.site-main').classList.add('hidden');
+  qs('#backHome').addEventListener('click', e=>{ e.preventDefault(); location.hash=''; showSection('home'); });
+}
+
+/* Projects page */
+function renderProjectsList(){
+  const area = qs('#moreSection'); area.innerHTML='';
+  const list = store.projects || [];
+  const grid = document.createElement('div'); grid.style.display='grid'; grid.style.gridTemplateColumns='repeat(2,1fr)'; grid.style.gap='16px';
+  list.filter(p=>p.published).forEach(p=>{
+    const card = document.createElement('div'); card.className='card';
+    card.innerHTML = `
+      ${p.image? `<img src="${p.image}" alt="proj">` : `<div style="height:180px;background:linear-gradient(90deg, rgba(46,159,65,0.04), rgba(78,160,255,0.02));display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">Projeto</div>`}
+      <div class="content">
+        <div class="meta">${formatDate(p.date)}</div>
+        <h3>${p.title}</h3>
+        <div class="excerpt">${(p.description||'').slice(0,140)}${(p.description||'').length>140? '…':''}</div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button class="btn-outline" data-id="${p.id}" data-act="viewProj">Ver</button>
+          <button class="btn" data-id="${p.id}" data-act="signup">Inscrever-se</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  area.appendChild(grid);
+
+  // wire signup/view
+  qsa('[data-act="signup"]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = e.currentTarget.dataset.id;
+      openSignupForm(id);
+    });
+  });
+  qsa('[data-act="viewProj"]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const id = e.currentTarget.dataset.id;
+      showProjectDetails(id);
+    });
+  });
+}
+
+/* Events list */
+function renderEventsList(){
+  const area = qs('#moreSection'); area.innerHTML='';
+  const list = store.events || [];
+  const grid = document.createElement('div'); grid.style.display='grid'; grid.style.gridTemplateColumns='repeat(2,1fr)'; grid.style.gap='16px';
+  list.filter(ev=>ev.published).forEach(ev=>{
+    const card = document.createElement('div'); card.className='card';
+    card.innerHTML = `
+      ${ev.image? `<img src="${ev.image}" alt="ev">` : `<div style="height:180px;background:linear-gradient(90deg, rgba(46,159,65,0.04), rgba(78,160,255,0.02));display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">Evento</div>`}
+      <div class="content">
+        <div class="meta">${formatDate(ev.date)}</div>
+        <h3>${ev.title}</h3>
+        <div class="excerpt">${(ev.description||'').slice(0,140)}${(ev.description||'').length>140? '…':''}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  area.appendChild(grid);
+}
+
+/* Show project details */
+function showProjectDetails(id){
+  const p = store.projects.find(x=>x.id===id);
+  if(!p) return alert('Projeto não encontrado');
+  qs('#moreSection').innerHTML = `
+    <div class="widget"><h3>${p.title}</h3><div class="muted">${formatDate(p.date)}</div><div style="margin-top:10px">${p.image? `<img src="${p.image}" style="width:100%;height:300px;object-fit:cover;border-radius:8px">` : ''}<p style="margin-top:12px;white-space:pre-line">${p.description||''}</p><div style="margin-top:12px"><button class="btn" id="signupFromDetail" data-id="${p.id}">Inscrever-se</button></div></div>
+  `;
+  qs('#signupFromDetail').addEventListener('click', ()=> openSignupForm(p.id));
+}
+
+/* Signup form */
+let currentSignupProjectId = null;
+function openSignupForm(projectId){
+  currentSignupProjectId = projectId;
+  const project = store.projects.find(p=>p.id===projectId);
+  qs('#signupProjectTitle').textContent = `Inscrição: ${project? project.title : ''}`;
+  const wrap = qs('#signupFormWrap'); wrap.innerHTML = `
+    <div class="form-row"><label>Nome completo</label><input type="text" id="signup_name"></div>
+    <div class="form-row"><label>E-mail</label><input type="text" id="signup_email"></div>
+    <div class="form-row"><label>Telefone</label><input type="text" id="signup_phone"></div>
+    <div class="form-row"><label>Turma / série</label><input type="text" id="signup_class"></div>
+    <div class="form-row"><label>Mensagem (opcional)</label><textarea id="signup_msg"></textarea></div>
+  `;
+  qs('#signupModal').style.display = 'flex';
+  // events wired below globally
+}
+
+function closeSignup(){
+  qs('#signupModal').style.display = 'none';
+  currentSignupProjectId = null;
+}
+
+/* Save signup */
+function submitSignup(){
+  const name = qs('#signup_name').value.trim();
+  const email = qs('#signup_email').value.trim();
+  const phone = qs('#signup_phone').value.trim();
+  const cls = qs('#signup_class').value.trim();
+  const msg = qs('#signup_msg').value.trim();
+  if(!name || !email){ alert('Nome e e-mail são obrigatórios'); return; }
+  const sub = {id: uid(10), projectId: currentSignupProjectId, name, email, phone, cls, msg, date: new Date().toISOString()};
+  store.inscriptions = store.inscriptions || [];
+  store.inscriptions.push(sub);
+  saveData(store);
+  alert('Inscrição enviada — obrigado!');
+  closeSignup();
+}
+
+/* Admin: show modal & login */
+async function openAdminModal(){
+  await ensureAdmin();
+  qs('#adminModal').classList.add('open');
+  qs('#adminModal').style.display = 'flex';
+  if(!state.isAdmin){ qs('#loginArea').classList.remove('hidden'); qs('#adminContent').classList.add('hidden'); }
+  else { qs('#loginArea').classList.add('hidden'); qs('#adminContent').classList.remove('hidden'); renderAdminLists(); populateCfgForm(); }
+  qs('#adminUserLabel').textContent = state.isAdmin? DEFAULT_USER : '';
+}
+function closeAdminModal(){ qs('#adminModal').classList.remove('open'); qs('#adminModal').style.display = 'none'; }
+
+/* Login */
+async function attemptLogin(){
+  const u = qs('#loginUser').value.trim();
+  const p = qs('#loginPass').value;
+  if(!u||!p) return alert('Preencha usuário e senha');
+  const stored = JSON.parse(localStorage.getItem(ADMIN_KEY) || '{}');
+  const h = await hashString(p);
+  if(stored.user === u && stored.pass === h){
+    state.isAdmin = true;
+    qs('#loginArea').classList.add('hidden');
+    qs('#adminContent').classList.remove('hidden');
+    renderAdminLists();
+    populateCfgForm();
+    qs('#adminUserLabel').textContent = DEFAULT_USER;
+  } else alert('Usuário ou senha inválidos.');
+}
+
+/* Logout */
+function doLogout(){ state.isAdmin = false; closeAdminModal(); qs('#loginPass').value=''; }
+
+/* Admin lists and tabs */
+function renderAdminLists(){
+  const container = qs('#entityList'); container.innerHTML = '';
+  if(state.activeTab==='news'){
+    const items = store.articles.slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+    if(items.length===0) container.innerHTML = '<div class="muted center">Nenhuma notícia.</div>';
+    items.forEach(it=>{
+      const el = document.createElement('div'); el.className='item';
+      el.innerHTML = `<img src="${it.image || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22></svg>'}" alt="">
+        <div style="flex:1"><strong>${it.title}</strong><div class="muted small">${formatDate(it.date)} ${it.published? '• Publicado':''}</div></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="btn-outline" data-id="${it.id}" data-act="editNews">Editar</button>
+          <button class="btn-outline" data-id="${it.id}" data-act="toggleNews">${it.published? 'Despublicar':'Publicar'}</button>
+          <button class="btn-danger" data-id="${it.id}" data-act="delNews">Excluir</button>
+        </div>`;
+      container.appendChild(el);
+    });
+    // wire buttons
+    qsa('[data-act="editNews"]').forEach(b=> b.addEventListener('click', e=> editNews(e.currentTarget.dataset.id)));
+    qsa('[data-act="toggleNews"]').forEach(b=> b.addEventListener('click', e=> togglePublishNews(e.currentTarget.dataset.id)));
+    qsa('[data-act="delNews"]').forEach(b=> b.addEventListener('click', e=> deleteNews(e.currentTarget.dataset.id)));
+    showNewsEditor(); // default editor visible
+  } else if(state.activeTab==='projects'){
+    const items = store.projects.slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+    if(items.length===0) container.innerHTML = '<div class="muted center">Nenhum projeto.</div>';
+    items.forEach(it=>{
+      const el = document.createElement('div'); el.className='item';
+      el.innerHTML = `<img src="${it.image || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22></svg>'}" alt="">
+        <div style="flex:1"><strong>${it.title}</strong><div class="muted small">${formatDate(it.date)} ${it.published? '• Publicado':''}</div></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="btn-outline" data-id="${it.id}" data-act="editProject">Editar</button>
+          <button class="btn-outline" data-id="${it.id}" data-act="toggleProject">${it.published? 'Despublicar':'Publicar'}</button>
+          <button class="btn-danger" data-id="${it.id}" data-act="delProject">Excluir</button>
+        </div>`;
+      container.appendChild(el);
+    });
+    qsa('[data-act="editProject"]').forEach(b=> b.addEventListener('click', e=> editProject(e.currentTarget.dataset.id)));
+    qsa('[data-act="toggleProject"]').forEach(b=> b.addEventListener('click', e=> togglePublishProject(e.currentTarget.dataset.id)));
+    qsa('[data-act="delProject"]').forEach(b=> b.addEventListener('click', e=> deleteProject(e.currentTarget.dataset.id)));
+    showProjectEditor();
+  } else if(state.activeTab==='events'){
+    const items = store.events.slice().sort((a,b)=> new Date(b.date)-new Date(a.date));
+    if(items.length===0) container.innerHTML = '<div class="muted center">Nenhum evento.</div>';
+    items.forEach(it=>{
+      const el = document.createElement('div'); el.className='item';
+      el.innerHTML = `<img src="${it.image || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2248%22></svg>'}" alt="">
+        <div style="flex:1"><strong>${it.title}</strong><div class="muted small">${formatDate(it.date)} ${it.published? '• Publicado':''}</div></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="btn-outline" data-id="${it.id}" data-act="editEvent">Editar</button>
+          <button class="btn-outline" data-id="${it.id}" data-act="toggleEvent">${it.published? 'Despublicar':'Publicar'}</button>
+          <button class="btn-danger" data-id="${it.id}" data-act="delEvent">Excluir</button>
+        </div>`;
+      container.appendChild(el);
+    });
+    qsa('[data-act="editEvent"]').forEach(b=> b.addEventListener('click', e=> editEvent(e.currentTarget.dataset.id)));
+    qsa('[data-act="toggleEvent"]').forEach(b=> b.addEventListener('click', e=> togglePublishEvent(e.currentTarget.dataset.id)));
+    qsa('[data-act="delEvent"]').forEach(b=> b.addEventListener('click', e=> deleteEvent(e.currentTarget.dataset.id)));
+    showEventEditor();
+  } else if(state.activeTab==='about'){
+    container.innerHTML = '<div class="muted small">Editar conteúdo da página Sobre abaixo.</div>';
+    showAboutEditor();
+  } else if(state.activeTab==='subs'){
+    showSubscriptions();
+  }
+}
+
+/* Editor forms (in the right column) */
+function showNewsEditor(){
+  const wrap = qs('#editorFormWrap'); wrap.innerHTML = `
+    <div class="form-row"><label>Título</label><input type="text" id="n_title"></div>
+    <div class="form-row"><label>Data</label><input type="date" id="n_date" /></div>
+    <div class="form-row"><label>Imagem (capa)</label><input type="file" id="n_image" accept="image/*"/><div id="previewImg" style="margin-top:8px"></div></div>
+    <div class="form-row"><label>Texto</label><textarea id="n_text"></textarea></div>
+    <div class="form-row"><label><input type="checkbox" id="n_publish" /> Publicar</label></div>
+    <div style="display:flex;gap:8px"><button class="btn" id="btnSaveNews">Salvar notícia</button><button class="btn-outline" id="btnClearNews">Limpar</button></div>
+  `;
+  // default values cleared
+  clearNewsEditor();
+  qs('#n_image').addEventListener('change', e=> handleImagePreview(e.target, '#previewImg'));
+  qs('#btnSaveNews').addEventListener('click', saveNews);
+  qs('#btnClearNews').addEventListener('click', clearNewsEditor);
+  qs('#editorTitle').textContent = 'Editor: Notícias';
+}
+
+function clearNewsEditor(){
+  state.editing = null;
+  qs('#editorMode').textContent = 'Nova';
+  qs('#n_title').value = '';
+  qs('#n_date').value = todayISO();
+  qs('#n_text').value = '';
+  qs('#n_publish').checked = true;
+  qs('#previewImg').innerHTML = '';
+}
+
+function editNews(id){
+  const it = store.articles.find(a=>a.id===id);
+  if(!it) return;
+  state.editing = {type:'news', id};
+  qs('#editorMode').textContent = 'Editar';
+  showNewsEditor(); // rebuild form then set values
+  qs('#n_title').value = it.title;
+  qs('#n_date').value = it.date;
+  qs('#n_text').value = it.text;
+  qs('#n_publish').checked = !!it.published;
+  qs('#previewImg').innerHTML = it.image? `<img src="${it.image}" style="width:100%;height:120px;object-fit:cover;border-radius:8px">`: '';
+}
+
+function saveNews(){
+  const title = qs('#n_title').value.trim();
+  const date = qs('#n_date').value || todayISO();
+  const text = qs('#n_text').value.trim();
+  const published = !!qs('#n_publish').checked;
+  if(!title) return alert('Título é obrigatório');
+  const imgTag = qs('#previewImg img');
+  const image = imgTag? imgTag.src : null;
+  if(state.editing && state.editing.type==='news'){
+    const idx = store.articles.findIndex(a=>a.id===state.editing.id);
+    if(idx>=0){ store.articles[idx] = {...store.articles[idx], title, date, text, published, image}; }
+  } else {
+    store.articles.push({id:uid(10), title, date, text, published, image});
+  }
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+  alert('Notícia salva.');
+  clearNewsEditor();
+}
+
+function togglePublishNews(id){
+  const idx = store.articles.findIndex(a=>a.id===id);
+  if(idx<0) return;
+  store.articles[idx].published = !store.articles[idx].published;
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+function deleteNews(id){
+  if(!confirm('Excluir essa notícia?')) return;
+  store.articles = store.articles.filter(a=>a.id!==id);
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+/* Projects editor */
+function showProjectEditor(){
+  const wrap = qs('#editorFormWrap'); wrap.innerHTML = `
+    <div class="form-row"><label>Título</label><input type="text" id="p_title"></div>
+    <div class="form-row"><label>Data</label><input type="date" id="p_date" /></div>
+    <div class="form-row"><label>Imagem</label><input type="file" id="p_image" accept="image/*"/><div id="p_preview" style="margin-top:8px"></div></div>
+    <div class="form-row"><label>Descrição</label><textarea id="p_desc"></textarea></div>
+    <div class="form-row"><label><input type="checkbox" id="p_publish" /> Publicar</label></div>
+    <div style="display:flex;gap:8px"><button class="btn" id="btnSaveProject">Salvar projeto</button><button class="btn-outline" id="btnClearProject">Limpar</button></div>
+  `;
+  clearProjectEditor();
+  qs('#p_image').addEventListener('change', e=> handleImagePreview(e.target, '#p_preview'));
+  qs('#btnSaveProject').addEventListener('click', saveProject);
+  qs('#btnClearProject').addEventListener('click', clearProjectEditor);
+  qs('#editorTitle').textContent = 'Editor: Projetos';
+}
+
+function clearProjectEditor(){
+  state.editing = null;
+  qs('#editorMode').textContent = 'Nova';
+  qs('#p_title').value = '';
+  qs('#p_date').value = todayISO();
+  qs('#p_desc').value = '';
+  qs('#p_publish').checked = true;
+  qs('#p_preview').innerHTML = '';
+}
+
+function editProject(id){
+  const it = store.projects.find(p=>p.id===id);
+  if(!it) return;
+  state.editing = {type:'project', id};
+  showProjectEditor();
+  qs('#editorMode').textContent = 'Editar';
+  qs('#p_title').value = it.title;
+  qs('#p_date').value = it.date;
+  qs('#p_desc').value = it.description || '';
+  qs('#p_publish').checked = !!it.published;
+  qs('#p_preview').innerHTML = it.image? `<img src="${it.image}" style="width:100%;height:120px;object-fit:cover;border-radius:8px">` : '';
+}
+
+function saveProject(){
+  const title = qs('#p_title').value.trim();
+  const date = qs('#p_date').value || todayISO();
+  const description = qs('#p_desc').value.trim();
+  const published = !!qs('#p_publish').checked;
+  if(!title) return alert('Título do projeto é obrigatório');
+  const imgTag = qs('#p_preview img');
+  const image = imgTag? imgTag.src : null;
+  if(state.editing && state.editing.type==='project'){
+    const idx = store.projects.findIndex(p=>p.id===state.editing.id);
+    if(idx>=0) store.projects[idx] = {...store.projects[idx], title, date, description, published, image};
+  } else {
+    store.projects.push({id:uid(10), title, date, description, published, image});
+  }
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+  alert('Projeto salvo.');
+  clearProjectEditor();
+}
+
+function togglePublishProject(id){
+  const idx = store.projects.findIndex(p=>p.id===id);
+  if(idx<0) return;
+  store.projects[idx].published = !store.projects[idx].published;
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+function deleteProject(id){
+  if(!confirm('Excluir projeto?')) return;
+  store.projects = store.projects.filter(p=>p.id!==id);
+  // also remove related inscriptions? Keep them for records but mark projectId reference removed
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+/* Events editor (similar) */
+function showEventEditor(){
+  const wrap = qs('#editorFormWrap'); wrap.innerHTML = `
+    <div class="form-row"><label>Título do evento</label><input type="text" id="e_title"></div>
+    <div class="form-row"><label>Data</label><input type="date" id="e_date" /></div>
+    <div class="form-row"><label>Imagem</label><input type="file" id="e_image" accept="image/*"/><div id="e_preview" style="margin-top:8px"></div></div>
+    <div class="form-row"><label>Descrição</label><textarea id="e_desc"></textarea></div>
+    <div class="form-row"><label><input type="checkbox" id="e_publish" /> Publicar</label></div>
+    <div style="display:flex;gap:8px"><button class="btn" id="btnSaveEvent">Salvar evento</button><button class="btn-outline" id="btnClearEvent">Limpar</button></div>
+  `;
+  clearEventEditor();
+  qs('#e_image').addEventListener('change', e=> handleImagePreview(e.target, '#e_preview'));
+  qs('#btnSaveEvent').addEventListener('click', saveEvent);
+  qs('#btnClearEvent').addEventListener('click', clearEventEditor);
+  qs('#editorTitle').textContent = 'Editor: Eventos';
+}
+
+function clearEventEditor(){
+  state.editing = null;
+  qs('#editorMode').textContent = 'Nova';
+  qs('#e_title').value = '';
+  qs('#e_date').value = todayISO();
+  qs('#e_desc').value = '';
+  qs('#e_publish').checked = true;
+  qs('#e_preview').innerHTML = '';
+}
+
+function editEvent(id){
+  const it = store.events.find(e=>e.id===id);
+  if(!it) return;
+  state.editing = {type:'event', id};
+  showEventEditor();
+  qs('#editorMode').textContent = 'Editar';
+  qs('#e_title').value = it.title;
+  qs('#e_date').value = it.date;
+  qs('#e_desc').value = it.description || '';
+  qs('#e_publish').checked = !!it.published;
+  qs('#e_preview').innerHTML = it.image? `<img src="${it.image}" style="width:100%;height:120px;object-fit:cover;border-radius:8px">` : '';
+}
+
+function saveEvent(){
+  const title = qs('#e_title').value.trim();
+  const date = qs('#e_date').value || todayISO();
+  const description = qs('#e_desc').value.trim();
+  const published = !!qs('#e_publish').checked;
+  if(!title) return alert('Título do evento é obrigatório');
+  const imgTag = qs('#e_preview img');
+  const image = imgTag? imgTag.src : null;
+  if(state.editing && state.editing.type==='event'){
+    const idx = store.events.findIndex(e=>e.id===state.editing.id);
+    if(idx>=0) store.events[idx] = {...store.events[idx], title, date, description, published, image};
+  } else {
+    store.events = store.events || [];
+    store.events.push({id:uid(10), title, date, description, published, image});
+  }
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+  alert('Evento salvo.');
+  clearEventEditor();
+}
+
+function togglePublishEvent(id){
+  const idx = store.events.findIndex(e=>e.id===id);
+  if(idx<0) return;
+  store.events[idx].published = !store.events[idx].published;
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+function deleteEvent(id){
+  if(!confirm('Excluir evento?')) return;
+  store.events = (store.events||[]).filter(e=>e.id!==id);
+  saveData(store);
+  renderAdminLists();
+  applyPublicChanges();
+}
+
+/* About editor */
+function showAboutEditor(){
+  const wrap = qs('#editorFormWrap'); wrap.innerHTML = `
+    <div class="form-row"><label>Conteúdo da página Sobre (HTML simples / texto)</label><textarea id="about_text"></textarea></div>
+    <div style="display:flex;gap:8px"><button class="btn" id="btnSaveAbout">Salvar Sobre</button></div>
+  `;
+  qs('#about_text').value = store.cfg.about || 'Colégio Estadual Mansões Odisséia — missão, visão e contato (editar aqui).';
+  qs('#btnSaveAbout').addEventListener('click', ()=>{
+    store.cfg.about = qs('#about_text').value;
+    saveData(store);
+    alert('Página Sobre atualizada.');
+    applyPublicChanges();
+  });
+  qs('#editorTitle').textContent = 'Editor: Sobre';
+}
+
+/* Subscriptions view */
+function showSubscriptions(){
+  const wrap = qs('#editorFormWrap'); wrap.innerHTML = `<div class="muted small">Listagem de inscrições recebidas por projeto.</div><div id="subsList" style="margin-top:8px;max-height:360px;overflow:auto"></div>`;
+  const list = store.inscriptions || [];
+  const container = qs('#subsList'); container.innerHTML = '';
+  if(list.length===0) container.innerHTML = '<div class="muted">Nenhuma inscrição.</div>';
+  list.slice().reverse().forEach(s=>{
+    const project = store.projects.find(p=>p.id===s.projectId);
+    const el = document.createElement('div'); el.className='item';
+    el.innerHTML = `<div style="flex:1"><strong>${s.name}</strong><div class="muted small">${s.email} • ${formatDate(s.date)}</div><div style="margin-top:6px">${project? `<em>${project.title}</em>` : '<em>Projeto removido</em>'}</div><div style="margin-top:6px">${s.phone? 'Tel: '+s.phone: ''} ${s.cls? ' • Turma: '+s.cls: ''}</div><div style="margin-top:6px;white-space:pre-line">${s.msg||''}</div></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><button class="btn-outline" data-id="${s.id}" data-act="delSub">Excluir</button></div>`;
+    container.appendChild(el);
+  });
+  qsa('[data-act="delSub"]').forEach(b=> b.addEventListener('click', e=> {
+    const id = e.currentTarget.dataset.id; if(!confirm('Excluir inscrição?')) return;
+    store.inscriptions = (store.inscriptions||[]).filter(x=>x.id!==id); saveData(store); showSubscriptions();
+  }));
+  qs('#editorTitle').textContent = 'Inscrições';
+}
+
+/* Image preview helper */
+function handleImagePreview(fileInput, previewSelector){
+  const f = fileInput.files && fileInput.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = function(e){ const b = e.target.result; qs(previewSelector).innerHTML = `<img src="${b}" style="width:100%;height:120px;object-fit:cover;border-radius:8px">`; };
+  reader.readAsDataURL(f);
+}
+
+/* Config form in admin */
+function populateCfgForm(){
+  qs('#cfg_title').value = store.cfg.title || '';
+  qs('#cfg_subtitle').value = store.cfg.subtitle || '';
+  qs('#cfg_menu_items').value = (store.cfg.menu || DEFAULT_MENU).join(' | ');
+  qs('#cfg_primary').value = store.cfg.primary || '#2e9f41';
+  qs('#cfg_accent').value = store.cfg.accent || '#f3c34b';
+  qs('#cfg_logo_preview').innerHTML = store.cfg.logo? `<img src="${store.cfg.logo}" style="width:100%;height:72px;object-fit:contain;border-radius:8px">` : '';
+}
+
+/* Save header cfg */
+function saveHeaderCfg(){
+  const title = qs('#cfg_title').value.trim();
+  const subtitle = qs('#cfg_subtitle').value.trim();
+  const menuText = qs('#cfg_menu_items').value.trim();
+  const primary = qs('#cfg_primary').value;
+  const accent = qs('#cfg_accent').value;
+  if(title) store.cfg.title = title;
+  if(subtitle) store.cfg.subtitle = subtitle;
+  store.cfg.menu = menuText? menuText.split('|').map(s=>s.trim()).filter(Boolean) : store.cfg.menu;
+  store.cfg.primary = primary;
+  store.cfg.accent = accent;
+  // if cfg_logo was uploaded, handleLogoUpload already updated store.cfg.logo
+  saveData(store);
+  applyPublicChanges();
+  populateCfgForm();
+  alert('Cabeçalho salvo.');
+}
+
+/* Logo upload in cfg: convert to base64 and store */
+function handleLogoUpload(fileInput){
+  const f = fileInput.files && fileInput.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = function(e){ store.cfg.logo = e.target.result; saveData(store); populateCfgForm(); applyPublicChanges(); };
+  reader.readAsDataURL(f);
+}
+
+/* Reset header colors */
+function resetHeaderColors(){ store.cfg.primary = '#2e9f41'; store.cfg.accent = '#f3c34b'; saveData(store); applyPublicChanges(); populateCfgForm(); alert('Cores resetadas'); }
+
+/* Change admin password */
+async function changePassword(){
+  const np = qs('#cfg_newpass').value.trim();
+  if(!np) return alert('Digite nova senha');
+  const hp = await hashString(np);
+  localStorage.setItem(ADMIN_KEY, JSON.stringify({user:DEFAULT_USER, pass:hp}));
+  qs('#cfg_newpass').value = '';
+  alert('Senha alterada.');
+}
+
+/* Reset all */
+function resetAll(){
+  if(!confirm('Resetar tudo apagará todas as notícias, projetos, eventos, inscrições e configurações. Confirma?')) return;
+  localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(ADMIN_KEY); location.reload();
+}
+
+/* Export / Import */
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(store, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'cemo-backup.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function importJSON(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const parsed = JSON.parse(e.target.result);
+      if(!parsed) throw new Error('Arquivo inválido');
+      if(confirm('Substituir dados atuais pelos do arquivo importado?')){ store = parsed; saveData(store); applyPublicChanges(); renderAdminLists(); alert('Importação concluída.'); }
+    }catch(err){ alert('Erro ao importar: '+err.message); }
+  };
+  reader.readAsText(file);
+}
+
+/* Helpers for admin tabs */
+function setAdminTab(tab){
+  state.activeTab = tab;
+  renderAdminLists();
+}
+
+/* Apply changes to public site */
+function applyPublicChanges(){
+  applyCfg();
+  renderHeroAndSide();
+  renderNewsGrid();
+  renderMostRead();
+  // rerender content area depending on hash/section
+  const section = currentSection();
+  showSection(section);
+}
+
+/* Navigation helpers */
+function currentSection(){
+  if(location.hash.startsWith('#news-')) return 'article';
+  if(location.hash.includes('projetos')) return 'projects';
+  if(location.hash.includes('eventos')) return 'events';
+  if(location.hash.includes('noticias')) return 'news';
+  if(location.hash.includes('sobre')) return 'about';
+  return 'home';
+}
+
+function showSection(name){
+  // clear moreSection and show per selection
+  qs('#moreSection').innerHTML = '';
+  document.querySelector('main.site-main').classList.remove('hidden');
+  qs('#articleSection').classList.add('hidden');
+  qs('#sectionTitle').textContent = name==='home'? 'Últimas' : (name==='news'? 'Notícias' : (name==='projects'? 'Projetos' : (name==='events'? 'Eventos' : (name==='about'? 'Sobre' : ''))));
+  if(name==='home' || name==='news') {
+    renderNewsGrid();
+  }
+  if(name==='projects') {
+    renderProjectsList();
+  }
+  if(name==='events') {
+    renderEventsList();
+  }
+  if(name==='about') {
+    // use store.cfg.about
+    const aboutHtml = `<div class="widget"><h4>Sobre o Colégio</h4><div style="white-space:pre-line">${store.cfg.about || 'Colégio Estadual Mansões Odisséia — editar no painel ADM.'}</div></div>`;
+    qs('#moreSection').innerHTML = aboutHtml;
+  }
+  if(name==='article') {
+    const id = location.hash.replace('#news-','');
+    renderArticleById(id);
+  }
+}
+
+/* Utility to set active nav visually */
+function setActiveNavByText(label){
+  qsa('nav.top-nav a').forEach(a=> a.classList.toggle('active', a.textContent === label));
+}
+
+/* Wiring events */
+function attachEvents(){
+  qs('#searchInput').addEventListener('input', e=>{ state.q = e.target.value; renderNewsGrid(); });
+  qs('#sortSelect').addEventListener('change', e=>{ state.sort = e.target.value; renderNewsGrid(); });
+  window.addEventListener('hashchange', ()=>{ const sec = currentSection(); if(sec==='article') showSection('article'); else showSection(sec); });
+
+  // Admin open/close
+  qs('#btnAdminQuick').addEventListener('click', openAdminModal);
+  qs('#btnAdminOpen').addEventListener('click', openAdminModal);
+  qs('#btnCloseAdmin').addEventListener('click', closeAdminModal);
+  qs('#btnCloseLogin').addEventListener('click', closeAdminModal);
+
+  // login/logout
+  qs('#btnLogin').addEventListener('click', attemptLogin);
+  qs('#btnLogout').addEventListener('click', doLogout);
+
+  // admin tabs
+  qs('#tabNews').addEventListener('click', ()=> { setAdminTab('news'); });
+  qs('#tabProjects').addEventListener('click', ()=> { setAdminTab('projects'); });
+  qs('#tabEvents').addEventListener('click', ()=> { setAdminTab('events'); });
+  qs('#tabAbout').addEventListener('click', ()=> { setAdminTab('about'); });
+  qs('#tabSubs').addEventListener('click', ()=> { setAdminTab('subs'); });
+
+  // new entities
+  qs('#btnNew').addEventListener('click', ()=> { setAdminTab('news'); showNewsEditor(); });
+  qs('#btnNewProject').addEventListener('click', ()=> { setAdminTab('projects'); showProjectEditor(); });
+  qs('#btnNewEvent').addEventListener('click', ()=> { setAdminTab('events'); showEventEditor(); });
+
+  // export/import
+  qs('#btnExport').addEventListener('click', exportJSON);
+  qs('#importFile').addEventListener('change', e=> importJSON(e.target.files[0]));
+
+  // cfg logo
+  qs('#cfg_logo').addEventListener('change', e=> handleLogoUpload(e.target));
+  qs('#btnSaveHeader').addEventListener('click', saveHeaderCfg);
+  qs('#btnResetHeader').addEventListener('click', resetHeaderColors);
+  qs('#btnChangePass').addEventListener('click', changePassword);
+  qs('#btnResetAll').addEventListener('click', resetAll);
+
+  // signup modal events
+  qs('#cancelSignup').addEventListener('click', closeSignup);
+  qs('#submitSignup').addEventListener('click', submitSignup);
+
+  // hidden admin: allow clicking logo 7x to open (kept for convenience)
+  let lhits = 0; qs('#siteLogo').addEventListener('click', ()=> { lhits++; if(lhits>=7){ openAdminModal(); lhits=0 } setTimeout(()=> lhits=0,1600); });
+}
+
+/* Init */
+(async function init(){
+  await ensureAdmin();
+  seedIfEmpty();
+  applyCfg();
+  renderHeroAndSide();
+  renderNewsGrid();
+  renderMostRead();
+  attachEvents();
+  // initial route
+  const sec = currentSection();
+  showSection(sec);
+})();
+
+</script>
+</body>
+</html>
